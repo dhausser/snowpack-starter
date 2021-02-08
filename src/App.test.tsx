@@ -4,9 +4,9 @@ import { expect } from "chai";
 import App from "./App";
 
 describe("<App>", () => {
-  test("renders header text", () => {
+  it("renders header text", () => {
     const { getByText } = render(<App />);
-    const headerElement = getByText(/hello world/i);
+    const headerElement = getByText(/welcome to snowpack!/i);
     expect(document.body.contains(headerElement));
   });
 });
