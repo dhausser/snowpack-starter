@@ -4,9 +4,9 @@ import { expect } from "chai";
 import App from "./App";
 
 describe("<App>", () => {
-  it("renders learn react link", () => {
+  test("renders header text", () => {
     const { getByText } = render(<App />);
-    const textElement = getByText(/hello world/i);
-    expect(document.body.contains(textElement));
+    const headerElement = getByText(/hello world/i);
+    expect(document.body.contains(headerElement));
   });
 });
