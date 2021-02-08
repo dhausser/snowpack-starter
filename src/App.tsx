@@ -1,11 +1,7 @@
 import React from "react";
 
 function App() {
-  return (
-    <div>
-      <p>Hello World!</p>
-    </div>
-  );
+  return <h1>Welcome to Snowpack!</h1>;
 }
 
 export default App;
