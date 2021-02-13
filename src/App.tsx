@@ -1,7 +1,9 @@
 import React from "react";
 
-function App({ name = "Snowpack" }) {
-  return <h1>Welcome to {name}!</h1>;
+interface AppProps {}
+
+function App(props: AppProps) {
+  return <h1>Welcome to Snowpack!</h1>;
 }
 
 export default App;
