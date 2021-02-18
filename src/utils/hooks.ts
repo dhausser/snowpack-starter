@@ -1,5 +1,14 @@
 import * as React from 'react'
 
+interface State {
+  status: string
+  data: any
+  error: {
+    name: string
+    message: string
+  }
+}
+
 function useSafeDispatch(dispatch: any) {
   const mounted = React.useRef(false)
   React.useLayoutEffect((): any => {
@@ -18,13 +27,13 @@ function useSafeDispatch(dispatch: any) {
 //   run(fetchPokemon(pokemonName))
 // }, [pokemonName, run])
 const defaultInitialState = {status: 'idle', data: null, error: null}
-function useAsync(initialState = {}) {
+function useAsync(initialState = defaultInitialState) {
   const initialStateRef = React.useRef({
     ...defaultInitialState,
     ...initialState,
   })
   const [{status, data, error}, setState] = React.useReducer(
-    (s: any, a: any) => ({...s, ...a}),
+    (s: State, a: any) => ({...s, ...a}),
     initialStateRef.current,
   )
 
