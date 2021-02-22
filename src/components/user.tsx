@@ -31,8 +31,6 @@ function User() {
     return <pre>{error.message}</pre>
   }
 
-  console.log(user)
-
   if (isSuccess) {
     return user ? (
       <div>
