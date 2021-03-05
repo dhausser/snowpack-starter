@@ -3,3 +3,4 @@ build
 .build
 .DS_store
 .env
+dist
