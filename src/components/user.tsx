@@ -17,11 +17,21 @@ interface User {
   }
 }
 
-function User() {
+function useAuthenticatedUser() {
+  const token = localStorage.getItem('token')
+  return typeof token === undefined ? undefined : token
+}
+
+function useUser() {
   const {data: user, error, isLoading, isIdle, isError, isSuccess} = useQuery<
     User,
     Error
   >('userData', () => client().then(data => data.results[0]))
+  return {user, error, isLoading, isIdle, isError, isSuccess}
+}
+
+function User() {
+  const {user, error, isLoading, isIdle, isError, isSuccess} = useUser()
 
   if (isLoading || isIdle) {
     return <p>Loading...</p>
@@ -52,4 +62,4 @@ function User() {
   return null
 }
 
-export {User}
+export {useAuthenticatedUser, useUser, User}
