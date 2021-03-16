@@ -3,10 +3,8 @@ import { render } from "@testing-library/react";
 import { expect } from "chai";
 import App from "./App";
 
-describe("<App>", () => {
-  it("renders header text", () => {
-    const { getByText } = render(<App />);
-    const headerElement = getByText(/welcome to snowpack!/i);
-    expect(document.body.contains(headerElement));
-  });
+test("renders header text", () => {
+  const { getByText } = render(<App />);
+  const headerElement = getByText(/welcome to snowpack!/i);
+  expect(document.body.contains(headerElement));
 });
