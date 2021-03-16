@@ -36,7 +36,7 @@
   "dependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-query": "^3.9.8"
+    "react-query": "^3.12.2"
   },
   "prettier": {
     "arrowParens": "avoid",
