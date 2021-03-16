@@ -25,7 +25,7 @@
     "@types/snowpack-env": "^2.3.3",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
-    "@web/test-runner": "^0.12.14",
+    "@web/test-runner": "^0.12.17",
     "chai": "^4.3.4",
     "eslint": "^7.22.0",
     "eslint-plugin-react": "^7.22.0",
