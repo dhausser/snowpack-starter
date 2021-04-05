@@ -26,13 +26,4 @@ function Calculator({left, operator, right}: CalculatorProps) {
   )
 }
 
-// const examples = (
-//   <>
-//     <Calculator left={1} operator="+" right={2} />
-//     <Calculator left={1} operator="-" right={2} />
-//     <Calculator left={1} operator="*" right={2} />
-//     <Calculator left={1} operator="/" right={2} />
-//   </>
-// )
-
 export {Calculator}

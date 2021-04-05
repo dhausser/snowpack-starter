@@ -1,8 +1,7 @@
 import * as React from 'react'
-import {Position} from './position'
 
 function UnauthenticatedApp() {
-  return <Position />
+  return <p>unauthenticated</p>
 }
 
 export {UnauthenticatedApp}
