@@ -4,4 +4,4 @@ function UnauthenticatedApp() {
   return <p>unauthenticated</p>
 }
 
-export {UnauthenticatedApp}
+export { UnauthenticatedApp }

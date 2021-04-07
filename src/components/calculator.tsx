@@ -15,7 +15,7 @@ interface CalculatorProps {
   right: number
 }
 
-function Calculator({left, operator, right}: CalculatorProps) {
+function Calculator({ left, operator, right }: CalculatorProps) {
   const result = operations[operator](left, right)
   return (
     <div>
@@ -26,4 +26,4 @@ function Calculator({left, operator, right}: CalculatorProps) {
   )
 }
 
-export {Calculator}
+export { Calculator }

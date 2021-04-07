@@ -8,4 +8,4 @@ function AuthenticatedApp() {
   )
 }
 
-export {AuthenticatedApp}
+export { AuthenticatedApp }

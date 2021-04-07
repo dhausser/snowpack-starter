@@ -17,7 +17,7 @@ function useSafeDispatch(dispatch: any) {
   }, [])
   return React.useCallback(
     (...args) => (mounted.current ? dispatch(...args) : void 0),
-    [dispatch],
+    [dispatch]
   )
 }
 
@@ -26,39 +26,39 @@ function useSafeDispatch(dispatch: any) {
 // React.useEffect(() => {
 //   run(fetchPokemon(pokemonName))
 // }, [pokemonName, run])
-const defaultInitialState = {status: 'idle', data: null, error: null}
+const defaultInitialState = { status: 'idle', data: null, error: null }
 function useAsync(initialState = defaultInitialState) {
   const initialStateRef = React.useRef({
     ...defaultInitialState,
     ...initialState,
   })
-  const [{status, data, error}, setState] = React.useReducer(
-    (s: State, a: any) => ({...s, ...a}),
-    initialStateRef.current,
+  const [{ status, data, error }, setState] = React.useReducer(
+    (s: State, a: any) => ({ ...s, ...a }),
+    initialStateRef.current
   )
 
   const safeSetState = useSafeDispatch(setState)
 
   const setData = React.useCallback(
-    data => safeSetState({data, status: 'resolved'}),
-    [safeSetState],
+    (data) => safeSetState({ data, status: 'resolved' }),
+    [safeSetState]
   )
   const setError = React.useCallback(
-    error => safeSetState({error, status: 'rejected'}),
-    [safeSetState],
+    (error) => safeSetState({ error, status: 'rejected' }),
+    [safeSetState]
   )
   const reset = React.useCallback(() => safeSetState(initialStateRef.current), [
     safeSetState,
   ])
 
   const run = React.useCallback(
-    promise => {
+    (promise) => {
       if (!promise || !promise.then) {
         throw new Error(
-          `The argument passed to useAsync().run must be a promise. Maybe a function that's passed isn't returning anything?`,
+          `The argument passed to useAsync().run must be a promise. Maybe a function that's passed isn't returning anything?`
         )
       }
-      safeSetState({status: 'pending'})
+      safeSetState({ status: 'pending' })
       return promise.then(
         (data: any) => {
           setData(data)
@@ -67,10 +67,10 @@ function useAsync(initialState = defaultInitialState) {
         (error: any) => {
           setError(error)
           return Promise.reject(error)
-        },
+        }
       )
     },
-    [safeSetState, setData, setError],
+    [safeSetState, setData, setError]
   )
 
   return {
@@ -90,4 +90,4 @@ function useAsync(initialState = defaultInitialState) {
   }
 }
 
-export {useAsync}
+export { useAsync }

@@ -1,6 +1,6 @@
 import React from 'react'
-import {useQuery} from 'react-query'
-import {client} from '../utils/api-client'
+import { useQuery } from 'react-query'
+import { client } from '../utils/api-client'
 
 interface User {
   name: {
@@ -23,15 +23,15 @@ function useAuthenticatedUser() {
 }
 
 function useUser() {
-  const {data: user, error, isLoading, isIdle, isError, isSuccess} = useQuery<
+  const { data: user, error, isLoading, isIdle, isError, isSuccess } = useQuery<
     User,
     Error
-  >('userData', () => client().then(data => data.results[0]))
-  return {user, error, isLoading, isIdle, isError, isSuccess}
+  >('userData', () => client().then((data) => data.results[0]))
+  return { user, error, isLoading, isIdle, isError, isSuccess }
 }
 
 function User() {
-  const {user, error, isLoading, isIdle, isError, isSuccess} = useUser()
+  const { user, error, isLoading, isIdle, isError, isSuccess } = useUser()
 
   if (isLoading || isIdle) {
     return <p>Loading...</p>
@@ -62,4 +62,4 @@ function User() {
   return null
 }
 
-export {useAuthenticatedUser, useUser, User}
+export { useAuthenticatedUser, useUser, User }

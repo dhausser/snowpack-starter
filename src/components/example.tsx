@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {useQuery} from 'react-query'
+import { useQuery } from 'react-query'
 
 interface RepoData {
   name: string
@@ -10,10 +10,10 @@ interface RepoData {
 }
 
 function Example() {
-  const {isLoading, error, data} = useQuery<RepoData, Error>('repoData', () =>
-    fetch('https://api.github.com/repos/tannerlinsley/react-query').then(res =>
-      res.json(),
-    ),
+  const { isLoading, error, data } = useQuery<RepoData, Error>('repoData', () =>
+    fetch(
+      'https://api.github.com/repos/tannerlinsley/react-query'
+    ).then((res) => res.json())
   )
 
   if (isLoading) return <p>Loading...</p>
@@ -35,4 +35,4 @@ function Example() {
   )
 }
 
-export {Example}
+export { Example }
