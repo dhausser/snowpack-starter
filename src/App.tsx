@@ -1,13 +1,13 @@
 import React from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { Example } from './components/example'
+import { Form } from './components/form'
 
 const queryClient = new QueryClient()
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Example />
+      <Form />
     </QueryClientProvider>
   )
 }
