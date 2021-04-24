@@ -39,7 +39,11 @@ export function ModalForm() {
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
       >
-        <BasicForm control={control} />
+        <BasicForm
+          control={control}
+          handleSubmit={handleSubmit}
+          onSubmit={onSubmit}
+        />
       </Modal>
     </div>
   )

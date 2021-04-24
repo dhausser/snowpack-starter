@@ -1,10 +1,12 @@
 import React from 'react'
 import { Controller, Control } from 'react-hook-form'
-import { Form, Input, Checkbox, Radio, Select } from 'antd'
+import { Form, Input, Checkbox, Radio, Select, Button } from 'antd'
 import { IceCreamEnum, GenderEnum, FormValues } from '../utils/types'
 
 interface FormProps {
   control: Control<FormValues>
+  handleSubmit: any
+  onSubmit: any
 }
 
 interface InputProps {
@@ -16,9 +18,13 @@ interface SelectProps extends InputProps {
   enumType: typeof IceCreamEnum | typeof GenderEnum
 }
 
-export function BasicForm({ control }: FormProps) {
+export function BasicForm({ control, handleSubmit, onSubmit }: FormProps) {
   const CustomInput = ({ label, name }: InputProps) => (
-    <Form.Item label={label}>
+    <Form.Item
+      label={label}
+      name={name}
+      rules={[{ required: true, message: 'Please input your username!' }]}
+    >
       <Controller
         name={name}
         control={control}
@@ -28,7 +34,11 @@ export function BasicForm({ control }: FormProps) {
   )
 
   const PasswordInput = ({ label, name }: InputProps) => (
-    <Form.Item label={label}>
+    <Form.Item
+      label={label}
+      name={name}
+      rules={[{ required: true, message: 'Please input your password!' }]}
+    >
       <Controller
         name={name}
         control={control}
@@ -40,7 +50,11 @@ export function BasicForm({ control }: FormProps) {
   )
 
   const CustomSelect = ({ label, name, enumType }: SelectProps) => (
-    <Form.Item label={label}>
+    <Form.Item
+      label={label}
+      name={name}
+      rules={[{ required: true, message: 'Please choose your flavor!' }]}
+    >
       <Controller
         name={name}
         control={control}
@@ -58,7 +72,11 @@ export function BasicForm({ control }: FormProps) {
   )
 
   const CustomRadio = ({ label, name, enumType }: SelectProps) => (
-    <Form.Item label={label}>
+    <Form.Item
+      label={label}
+      name={name}
+      rules={[{ required: true, message: 'Please choose your gender!' }]}
+    >
       <Controller
         name={name}
         control={control}
@@ -76,7 +94,11 @@ export function BasicForm({ control }: FormProps) {
   )
 
   const CustomCheckbox = ({ name }: Omit<InputProps, 'label'>) => (
-    <Form.Item valuePropName="checked">
+    <Form.Item
+      valuePropName="checked"
+      name={name}
+      rules={[{ required: true, message: 'Please check the box!' }]}
+    >
       <Controller
         name={name}
         control={control}
@@ -88,7 +110,11 @@ export function BasicForm({ control }: FormProps) {
   )
 
   return (
-    <Form name="basic" initialValues={{ remember: true }}>
+    <Form
+      name="basic"
+      initialValues={{ remember: true }}
+      onFinish={handleSubmit(onSubmit)}
+    >
       <CustomInput label="Username" name="username" />
       <PasswordInput label="Password" name="password" />
       <CustomSelect
@@ -98,6 +124,11 @@ export function BasicForm({ control }: FormProps) {
       />
       <CustomRadio label="Gender" name="gender" enumType={GenderEnum} />
       <CustomCheckbox name="remember" />
+      <Form.Item>
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </Form.Item>
     </Form>
   )
 }
