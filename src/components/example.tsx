@@ -9,7 +9,7 @@ interface RepoData {
   forks_count: number
 }
 
-function Example() {
+function Example(): React.ReactElement {
   const { isLoading, error, data } = useQuery<RepoData, Error>('repoData', () =>
     fetch(
       'https://api.github.com/repos/tannerlinsley/react-query'

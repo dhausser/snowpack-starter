@@ -1,5 +1,5 @@
 import React from 'react'
-import { Controller, Control, SubmitHandler } from 'react-hook-form'
+import { Controller, Control, UseFormHandleSubmit } from 'react-hook-form'
 import {
   Form,
   Input,
@@ -13,8 +13,8 @@ import { IceCreamEnum, GenderEnum, FormValues } from '../utils/types'
 
 interface FormProps {
   control: Control<FormValues>
-  handleSubmit: SubmitHandler<FormValues>
-  onSubmit: FormValues
+  handleSubmit: UseFormHandleSubmit<FormValues>
+  onSubmit: (data: FormValues) => void
   form: FormInstance
 }
 

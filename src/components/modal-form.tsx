@@ -2,10 +2,9 @@ import React from 'react'
 import { Modal, Button, Form } from 'antd'
 import { useForm } from 'react-hook-form'
 import { BasicForm } from './hook-form'
-// import { DemoForm } from './form'
 import type { FormValues } from '../utils/types'
 
-export function ModalForm() {
+export function ModalForm(): React.ReactElement {
   const [visible, setVisible] = React.useState(true)
   const [confirmLoading, setConfirmLoading] = React.useState(false)
   const { control, handleSubmit } = useForm<FormValues>()
@@ -18,11 +17,11 @@ export function ModalForm() {
   const onSubmit = (data: FormValues) => {
     console.log(data)
     form.submit()
-    // setConfirmLoading(true)
-    // setTimeout(() => {
-    //   setVisible(false)
-    //   setConfirmLoading(false)
-    // }, 2000)
+    setConfirmLoading(true)
+    setTimeout(() => {
+      setVisible(false)
+      setConfirmLoading(false)
+    }, 2000)
   }
 
   const handleCancel = () => {
@@ -42,7 +41,6 @@ export function ModalForm() {
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
       >
-        {/* <DemoForm form={form} /> */}
         <BasicForm
           form={form}
           control={control}
