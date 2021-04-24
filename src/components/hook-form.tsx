@@ -12,13 +12,17 @@ interface InputProps {
   label: string
 }
 
+interface SelectProps extends InputProps {
+  enumType: typeof IceCreamEnum | typeof GenderEnum
+}
+
 export function BasicForm({ control }: FormProps) {
   const CustomInput = ({ label, name }: InputProps) => (
     <Form.Item label={label}>
       <Controller
         name={name}
         control={control}
-        render={({ field: { ref } }) => <Input ref={ref} />}
+        render={({ field: { onChange } }) => <Input onChange={onChange} />}
       />
     </Form.Item>
   )
@@ -28,20 +32,22 @@ export function BasicForm({ control }: FormProps) {
       <Controller
         name={name}
         control={control}
-        render={({ field: { ref } }) => <Input.Password ref={ref} />}
+        render={({ field: { onChange } }) => (
+          <Input.Password onChange={onChange} />
+        )}
       />
     </Form.Item>
   )
 
-  const CustomSelect = ({ label, name }: InputProps) => (
+  const CustomSelect = ({ label, name, enumType }: SelectProps) => (
     <Form.Item label={label}>
       <Controller
         name={name}
         control={control}
-        render={({ field: { ref } }) => (
+        render={({ field: { onChange } }) => (
           <Select
-            ref={ref}
-            options={Object.keys(IceCreamEnum).map((key: string) => ({
+            onChange={onChange}
+            options={Object.keys(enumType).map((key: string) => ({
               value: key,
               label: key,
             }))}
@@ -51,14 +57,14 @@ export function BasicForm({ control }: FormProps) {
     </Form.Item>
   )
 
-  const CustomRadio = ({ label, name }: InputProps) => (
+  const CustomRadio = ({ label, name, enumType }: SelectProps) => (
     <Form.Item label={label}>
       <Controller
         name={name}
         control={control}
-        render={({ field: { ref } }) => (
-          <Radio.Group ref={ref}>
-            {Object.keys(GenderEnum).map((gender) => (
+        render={({ field: { onChange } }) => (
+          <Radio.Group onChange={onChange}>
+            {Object.keys(enumType).map((gender) => (
               <Radio key={gender} value={gender}>
                 {gender}
               </Radio>
@@ -74,8 +80,8 @@ export function BasicForm({ control }: FormProps) {
       <Controller
         name={name}
         control={control}
-        render={({ field: { ref } }) => (
-          <Checkbox ref={ref}>Remember me</Checkbox>
+        render={({ field: { onChange } }) => (
+          <Checkbox onChange={onChange}>Remember me</Checkbox>
         )}
       />
     </Form.Item>
@@ -85,8 +91,12 @@ export function BasicForm({ control }: FormProps) {
     <Form name="basic" initialValues={{ remember: true }}>
       <CustomInput label="Username" name="username" />
       <PasswordInput label="Password" name="password" />
-      <CustomSelect label="Flavor" name="iceCreamType" />
-      <CustomRadio label="Gender" name="gender" />
+      <CustomSelect
+        label="Flavor"
+        name="iceCreamType"
+        enumType={IceCreamEnum}
+      />
+      <CustomRadio label="Gender" name="gender" enumType={GenderEnum} />
       <CustomCheckbox name="remember" />
     </Form>
   )
