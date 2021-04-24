@@ -9,3 +9,11 @@ export enum IceCreamEnum {
   strawberry = 'Strawberry',
   vanilla = 'Vanilla',
 }
+
+export interface FormValues {
+  username: string
+  password: string
+  iceCreamType: IceCreamEnum
+  gender: GenderEnum
+  remember: boolean
+}

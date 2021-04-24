@@ -1,11 +1,10 @@
 import React from 'react'
-import { Controller } from 'react-hook-form'
+import { Controller, Control } from 'react-hook-form'
 import { Form, Input, Checkbox, Radio, Select } from 'antd'
-import { IceCreamEnum, GenderEnum } from '../utils/types'
+import { IceCreamEnum, GenderEnum, FormValues } from '../utils/types'
 
 interface FormProps {
-  control: any
-  handleSubmit: any
+  control: Control<FormValues>
 }
 
 export function BasicForm({ control }: FormProps) {

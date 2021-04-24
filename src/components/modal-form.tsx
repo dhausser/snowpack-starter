@@ -2,26 +2,18 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { Modal, Button } from 'antd'
 import { BasicForm } from './hook-form'
-import type { IceCreamEnum, GenderEnum } from '../utils/types'
-
-interface IFormInput {
-  username: string
-  password: string
-  iceCreamType: IceCreamEnum
-  gender: GenderEnum
-  remember: boolean
-}
+import type { FormValues } from '../utils/types'
 
 export function ModalForm() {
   const [visible, setVisible] = React.useState(true)
   const [confirmLoading, setConfirmLoading] = React.useState(false)
-  const { control, handleSubmit } = useForm<IFormInput>()
+  const { control, handleSubmit } = useForm<FormValues>()
 
   const showModal = () => {
     setVisible(true)
   }
 
-  const onSubmit = (data: IFormInput) => {
+  const onSubmit = (data: FormValues) => {
     console.log(data)
     setConfirmLoading(true)
     setTimeout(() => {
@@ -47,7 +39,7 @@ export function ModalForm() {
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
       >
-        <BasicForm control={control} handleSubmit={handleSubmit} />
+        <BasicForm control={control} />
       </Modal>
     </div>
   )
