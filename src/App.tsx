@@ -1,6 +1,6 @@
 import React from 'react'
 import { useForm, Controller } from 'react-hook-form'
-import { Modal, Form, Input, Button, Checkbox, Radio } from 'antd'
+import { Modal, Form, Input, Button, Checkbox, Radio, Select } from 'antd'
 
 enum GenderEnum {
   female = 'female',
@@ -8,17 +8,24 @@ enum GenderEnum {
   other = 'other',
 }
 
+enum IceCreamEnum {
+  chocolate = 'Chocolate',
+  strawberry = 'Strawberry',
+  vanilla = 'Vanilla',
+}
+
 interface IFormInput {
   username: string
   password: string
-  remember: boolean
+  iceCreamType: IceCreamEnum
   gender: GenderEnum
+  remember: boolean
 }
 
 function App() {
   const [visible, setVisible] = React.useState(true)
   const [confirmLoading, setConfirmLoading] = React.useState(false)
-  const { register, control, handleSubmit } = useForm<IFormInput>()
+  const { control, handleSubmit } = useForm<IFormInput>()
 
   const showModal = () => {
     setVisible(true)
@@ -38,14 +45,6 @@ function App() {
     setVisible(false)
   }
 
-  const onFinish = (values: any) => {
-    console.log('Success:', values)
-  }
-
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo)
-  }
-
   return (
     <div className="container">
       <Button type="primary" onClick={showModal}>
@@ -58,62 +57,65 @@ function App() {
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
       >
-        <Form
-          name="basic"
-          initialValues={{ remember: true }}
-          onFinish={handleSubmit(onFinish)}
-          onFinishFailed={onFinishFailed}
-        >
-          <Controller
-            name="username"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <Form.Item label="Username" {...field}>
-                <Input />
-              </Form.Item>
-            )}
-          />
+        <Form name="basic" initialValues={{ remember: true }}>
+          <Form.Item label="Username">
+            <Controller
+              name="username"
+              control={control}
+              render={({ field }) => <Input {...field} />}
+            />
+          </Form.Item>
 
-          <Controller
-            name="password"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <Form.Item label="Password" {...field}>
-                <Input.Password />
-              </Form.Item>
-            )}
-          />
+          <Form.Item label="Password">
+            <Controller
+              name="password"
+              control={control}
+              render={({ field }) => <Input.Password {...field} />}
+            />
+          </Form.Item>
 
-          <Controller
-            name="gender"
-            control={control}
-            render={({ field }) => (
-              <Form.Item label="Gender" {...field}>
-                <Radio.Group>
+          <Form.Item label="Flavor">
+            <Controller
+              name="iceCreamType"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  options={Object.keys(IceCreamEnum).map((key: string) => ({
+                    value: key,
+                    label: key,
+                  }))}
+                />
+              )}
+            />
+          </Form.Item>
+
+          <Form.Item label="Gender">
+            <Controller
+              name="gender"
+              control={control}
+              render={({ field }) => (
+                <Radio.Group {...field}>
                   {Object.keys(GenderEnum).map((gender) => (
                     <Radio key={gender} value={gender}>
                       {gender}
                     </Radio>
                   ))}
                 </Radio.Group>
-              </Form.Item>
-            )}
-          />
+              )}
+            />
+          </Form.Item>
 
-          <Controller
-            name="remember"
-            control={control}
-            defaultValue={false}
-            render={({ field }) => (
-              <Form.Item valuePropName="checked" {...field}>
-                <Checkbox>Remember me</Checkbox>
-              </Form.Item>
-            )}
-          />
+          <Form.Item valuePropName="checked">
+            <Controller
+              name="remember"
+              control={control}
+              render={({ field }) => (
+                <Checkbox {...field}>Remember me</Checkbox>
+              )}
+            />
+          </Form.Item>
         </Form>
-        {/* <DevTool control={control} /> */}
       </Modal>
     </div>
   )
