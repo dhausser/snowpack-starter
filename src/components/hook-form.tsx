@@ -1,13 +1,21 @@
 import React from 'react'
-import { Controller, Control } from 'react-hook-form'
-import { Form, Input, Checkbox, Radio, Select, Button } from 'antd'
+import { Controller, Control, SubmitHandler } from 'react-hook-form'
+import {
+  Form,
+  Input,
+  Checkbox,
+  Radio,
+  Select,
+  Button,
+  FormInstance,
+} from 'antd'
 import { IceCreamEnum, GenderEnum, FormValues } from '../utils/types'
 
 interface FormProps {
   control: Control<FormValues>
-  handleSubmit: any
-  onSubmit: any
-  form: any
+  handleSubmit: SubmitHandler<FormValues>
+  onSubmit: FormValues
+  form: FormInstance
 }
 
 interface InputProps {
