@@ -30,7 +30,7 @@ export function ModalForm() {
   return (
     <div className="container">
       <Button type="primary" onClick={showModal}>
-        Open Modal with async logic
+        Open Modal
       </Button>
       <Modal
         title="Title"
