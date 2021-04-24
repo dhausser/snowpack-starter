@@ -18,7 +18,5 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "ignorePatterns": "*.config.js",
-  "rules": {
-    "@typescript-eslint/explicit-module-boundary-types": ["off"]
-  }
+  "rules": {}
 }

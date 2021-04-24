@@ -1,8 +1,8 @@
 import React from 'react'
-import { ModalForm } from './components/modal-form'
+import { Collection } from './components/collection'
 
-function App() {
-  return <ModalForm />
+function App(): React.ReactElement {
+  return <Collection />
 }
 
 export default App

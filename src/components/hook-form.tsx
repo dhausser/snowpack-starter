@@ -7,6 +7,7 @@ interface FormProps {
   control: Control<FormValues>
   handleSubmit: any
   onSubmit: any
+  form: any
 }
 
 interface InputProps {
@@ -18,7 +19,12 @@ interface SelectProps extends InputProps {
   enumType: typeof IceCreamEnum | typeof GenderEnum
 }
 
-export function BasicForm({ control, handleSubmit, onSubmit }: FormProps) {
+export function BasicForm({
+  control,
+  handleSubmit,
+  onSubmit,
+  form,
+}: FormProps): React.ReactElement {
   const CustomInput = ({ label, name }: InputProps) => (
     <Form.Item
       label={label}
@@ -111,6 +117,7 @@ export function BasicForm({ control, handleSubmit, onSubmit }: FormProps) {
 
   return (
     <Form
+      form={form}
       name="basic"
       initialValues={{ remember: true }}
       onFinish={handleSubmit(onSubmit)}
