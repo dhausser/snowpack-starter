@@ -1,26 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import { useForm } from "react-hook-form";
 import { Header } from "./components/header"
+import { ButtonResults } from "./components/button-results"
 import { AntdForm, defaultValues } from './components/antd-hook-form'
 
 import 'antd/dist/antd.css'
-import '../styles.css'
+import './styles.css'
 
 // import { Collection } from './components/collection'
 // import './index.css'
 
 let renderCount = 0;
 
-function App() {
-  const { handleSubmit, control } = useForm({ defaultValues });
-  // const [, setData] = useState(null);
+export function App() {
+  const { handleSubmit, reset, setValue, control } = useForm({ defaultValues });
+  const [data, setData] = useState(defaultValues);
   renderCount++;
 
   return (
-    <form onSubmit={handleSubmit((data) => console.log(data))} className="form">
+    <form onSubmit={handleSubmit((data) => setData(data))} className="form">
       <Header renderCount={renderCount} />
       <AntdForm control={control} />
+      <ButtonResults {...{ data, reset, setValue }} />
     </form>
   )
 }
