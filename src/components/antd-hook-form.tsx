@@ -7,6 +7,7 @@ import {
   Switch as AntdSwitch,
   Slider as AntdSlider,
   Radio,
+  DatePicker
 } from 'antd'
 
 export const defaultValues = {
@@ -16,6 +17,7 @@ export const defaultValues = {
   AntdSlider: 20,
   AntdRadio: 1,
   AntdSelect: "",
+  AntdDate: null
 };
 
 const { Option } = Select
@@ -98,6 +100,17 @@ export function AntdForm({ control }: { control: Control<typeof defaultValues> }
                 <Radio value={3}>C</Radio>
                 <Radio value={4}>D</Radio>
               </Radio.Group>
+            )}
+          />
+        </section>
+
+        <section>
+          <label>Antd DatePicker</label>
+          <Controller
+            control={control}
+            name="AntdDate"
+            render={({ field: { onChange, value } }) => (
+              <DatePicker value={value} onChange={onChange} />
             )}
           />
         </section>
