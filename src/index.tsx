@@ -1,8 +1,29 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App.jsx'
+import { useForm } from "react-hook-form";
+import { Header } from "./components/header"
+import { AntdForm, defaultValues } from './components/antd-hook-form'
+
 import 'antd/dist/antd.css'
-import './index.css'
+import '../styles.css'
+
+// import { Collection } from './components/collection'
+// import './index.css'
+
+let renderCount = 0;
+
+function App() {
+  const { handleSubmit, control } = useForm({ defaultValues });
+  // const [, setData] = useState(null);
+  renderCount++;
+
+  return (
+    <form onSubmit={handleSubmit((data) => console.log(data))} className="form">
+      <Header renderCount={renderCount} />
+      <AntdForm control={control} />
+    </form>
+  )
+}
 
 ReactDOM.render(
   <React.StrictMode>
