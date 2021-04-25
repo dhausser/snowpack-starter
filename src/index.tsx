@@ -8,9 +8,6 @@ import { AntdForm, defaultValues } from './components/antd-hook-form'
 import 'antd/dist/antd.css'
 import './styles.css'
 
-// import { Collection } from './components/collection'
-// import './index.css'
-
 let renderCount = 0;
 
 export function App() {
